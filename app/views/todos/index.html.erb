@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="tit">
+    <h2>Todo List</h2>
+  </div>
+  <table class="table table-striped">
+ <% @todos.each do |todo| %>
+   <tr>
+     <td><input type="checkbox">
+      <%= todo.date %></td>
+     <td><%= todo.title %></td>
+     <td><%= todo.description %></td>
+
+     <% if Time.now.to_date <= todo.date %>
+     <td><%= link_to edit_todo_path(todo) do %>
+       <span class="glyphicon glyphicon-pencil"></span>
+     </td>
+     <% end %>
+     <td><%= link_to todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } do %>
+       <span class="glyphicon glyphicon-trash"></span>
+       <% end %>
+      </td>
+      <% else %>
+      <td><span class="glyphicon glyphicon-pencil"></span></td>
+      <td><span class="glyphicon glyphicon-trash"></span></td>
+     <% end %>
+
+
+
+   </tr>
+ <% end %>
+</table>
+<%= link_to 'New Todo', new_todo_path %>
+</div>
+
