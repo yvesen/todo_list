@@ -9,10 +9,12 @@
       <%= todo.date %></td>
      <td><%= todo.title %></td>
      <td><%= todo.description %></td>
+     
 
      <% if Time.now.to_date <= todo.date %>
      <td><%= link_to edit_todo_path(todo) do %>
        <span class="glyphicon glyphicon-pencil"></span>
+
      </td>
      <% end %>
      <td><%= link_to todo_path(todo), method: :delete, data:{ confirm: "Are you sure?" } do %>
